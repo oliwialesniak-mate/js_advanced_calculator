@@ -7,19 +7,34 @@ function makeCalculator() {
     result: 0, // initial value
 
     // Adds value to result
-    add(value) { this.result += value; return this; },
+    add(value) {
+      this.result += value;
+      return this;
+    },
 
     // Subtracts value from result
-    subtract(value) { this.result -= value; return this; },
+    subtract(value) {
+      this.result -= value;
+      return this;
+    },
 
     // Multiplies result by value
-    multiply(value) { this.result *= value; return this; },
+    multiply(value) {
+      this.result *= value;
+      return this;
+    },
 
     // Divides result by value
-    divide(value) { this.result /= value; return this; },
+    divide(value) {
+      this.result /= value;
+      return this;
+    },
 
     // Resets result to 0
-    reset() { this.result = 0; return this; },
+    reset() {
+      this.result = 0;
+      return this;
+    },
 
     /**
      * Operates on result using a callback function
@@ -28,8 +43,9 @@ function makeCalculator() {
      * @returns {object} this - for method chaining
      */
     operate(callback, number) {
+      // invoke callback with 'this' bound to calculator
       if (typeof callback === 'function') {
-        callback.call(this, number); // invoke callback with this bound to calculator
+        callback.call(this, number);
       }
       return this; // allow chaining
     }
