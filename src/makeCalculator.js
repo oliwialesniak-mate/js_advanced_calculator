@@ -1,18 +1,19 @@
-const calculator = makeCalculator();
-
-calculator.operate(calculator.add, 21);
-console.log(calculator.result);
-
-calculator.reset();
-console.log(calculator.result);
-
-calculator
-  .operate(calculator.add, 10)
-  .reset()
-  .operate(calculator.subtract, 20)
-  .operate(calculator.divide, 5)
-  .operate(calculator.multiply, 7);
-
-console.log(calculator.result);
+/**
+ * @returns {object}
+ */
+function makeCalculator() {
+  return {
+    result: 0,
+    add(value) { return this.result + value; },
+    subtract(value) { return this.result - value; },
+    multiply(value) { return this.result * value; },
+    divide(value) { return this.result / value; },
+    operate(callback, value) {
+      this.result = callback.call(this, value);
+      return this;
+    },
+    reset() { this.result = 0; return this; },
+  };
+}
 
 module.exports = makeCalculator;
